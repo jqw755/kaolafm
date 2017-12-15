@@ -1,10 +1,13 @@
 <template>
-    <div class="index_container">
+    <section class="index_container">
         <!--logo-->
         <section class="logo_wrap">
-            <div class="logo_img"></div>
-            <div class="app_info">
-                <p class="title">听你想听的</p>
+            <router-link to="/index" class="logo_img"></router-link>
+            <div class="menu_wrap">
+                <p class="menu">搜索</p>
+                <p>
+                    <router-link to="/login" class="user">登录</router-link>
+                </p>
             </div>
         </section>
         <!--banner-->
@@ -13,7 +16,7 @@
         <Category></Category>
         <!--module-->
 
-    </div>
+    </section>
 </template>
 
 <script>
@@ -23,20 +26,11 @@
     export default {
         data() {
             return {
-                category: {}
             }
         },
-        mounted: function () {
-            this.getAllCategory();
-        },
+        mounted: function () {},
         methods: {
-            getAllCategory() {
-                const self = this;
-                self.$api.get('/kl/category/list', {'fid': 0}).then((res) => {
-                    self.category = res.data;
-                    console.log(self.category)
-                }).catch(e => alert(e))
-            }
+
         },
         components: {
             Banner, Category

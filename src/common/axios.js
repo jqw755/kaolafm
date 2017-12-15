@@ -67,8 +67,8 @@ function post(url, data) {
 }
 
 function get(url, params) {
-    params.page = 1;
-    params.page_size = 3;
+    params.pagenum = 1;
+    params.pagesize = 18;
     return axios({
         method: 'get',
         // baseURL: 'https://api.imjad.cn/qqfm/',
