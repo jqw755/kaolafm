@@ -22,6 +22,7 @@
 
 <style lang="scss">
     #app {
+        height: 100%;
         margin: 0 auto;
         max-width: 640px;
         background: #fffffd;

@@ -1,11 +1,14 @@
 <template>
-    <div class="">
-      search
+    <div class="toast_wrap">
+
     </div>
 </template>
 
 <script>
     export default {
+        props:{
+            msg:'nnnnnnn'
+        },
         data() {
             return {}
         }

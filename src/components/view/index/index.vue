@@ -1,15 +1,7 @@
 <template>
     <section class="index_container">
         <!--logo-->
-        <section class="logo_wrap">
-            <router-link to="/index" class="logo_img"></router-link>
-            <div class="menu_wrap">
-                <p class="menu">搜索</p>
-                <p>
-                    <router-link to="/login" class="user">登录</router-link>
-                </p>
-            </div>
-        </section>
+        <Logo></Logo>
         <!--banner-->
         <Banner></Banner>
         <!--category-->
@@ -20,6 +12,7 @@
 </template>
 
 <script>
+    import Logo from './logo.vue'
     import Banner from './banner.vue'
     import Category from './category.vue'
 
@@ -33,12 +26,12 @@
 
         },
         components: {
-            Banner, Category
+            Banner, Category, Logo
         }
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import '../../style/index/index';
     @import "../../style/sprites";
 </style>
