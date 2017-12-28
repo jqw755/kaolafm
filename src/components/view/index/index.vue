@@ -31,7 +31,6 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import '../../style/index/index';
-    @import "../../style/sprites";
 </style>

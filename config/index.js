@@ -6,7 +6,6 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -16,6 +15,13 @@ module.exports = {
             changeOrigin: true,
             pathRewrite: {
                 '^/kl': '/'
+            }
+        },
+        '/login': {
+            target: 'http://m.kaolafm.com/webpassport',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/login': '/login'
             }
         }
     },

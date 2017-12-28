@@ -26,7 +26,7 @@
             display: inline-block;
             width: 2.25rem;
             height: 0.8rem;
-            background: url("../../image/logo.png") no-repeat;
+            background: url("../../image/public/logo.png") no-repeat;
             background-size: 100% 100%;
         }
         .menu_wrap {

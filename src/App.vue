@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <Loading v-show="$store.state.showLoading"></Loading>
+        <Loading v-show="showLoading"></Loading>
+        <Notice :noticeOptions="noticeOptions"></Notice>
+        <Toast :toastOptions="toastOptions"></Toast>
         <keep-alive>
             <router-view v-if="$route.meta.keepAlive"></router-view>
         </keep-alive>
@@ -9,13 +11,29 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     //  loading
-    import Loading from './components/view/loading/loading'
+    import Loading from './components/view/loading/loading.vue'
+    import Notice from './components/view/notice/notice'
+    import Toast from './components/view/notice/toast'
 
     export default {
         name: 'app',
         components: {
-            Loading
+            Loading, Notice, Toast
+        },
+//        methods: {
+//            ...mapActions([
+//                'showLoading',
+//                'noticeOptions'
+//            ])
+//        },
+        computed: {
+            ...mapState([
+                'showLoading',
+                'noticeOptions',
+                'toastOptions'
+            ])
         }
     }
 </script>

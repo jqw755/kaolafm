@@ -12,7 +12,6 @@ import './components/style/base.scss'
 
 Vue.prototype.$api = api;
 
-
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
@@ -20,7 +19,6 @@ new Vue({
     el: '#app',
     router,
     axios,
-    // vuex,
     store,
     template: '<App/>',
     components: {App}

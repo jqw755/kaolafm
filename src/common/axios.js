@@ -2,10 +2,25 @@ import axios from 'axios'
 import qs from 'qs'
 import store from '../store/store'
 
+function displayNotice(o) {
+    let options = {
+        isShow: true,
+        message: o.message,
+        noCancel: true,
+        // cancelFun: function () {
+        //     console.log('cancel')
+        // },
+        confirmFun: function () {
+            o.fun()
+        }
+    };
+    store.commit('SHOWNOTICE', options);
+}
+
 //请求拦截
 axios.interceptors.request.use(config => {
     // loading
-    store.commit('loading');
+    store.commit('LOADING', true);
     return config
 }, error => {
     return Promise.reject(error);
@@ -13,10 +28,15 @@ axios.interceptors.request.use(config => {
 
 //响应拦截
 axios.interceptors.response.use(response => {
-    store.commit('hideLoading');
+    store.commit('LOADING', false);
     return response
 }, error => {
-    console.log('响应出错,测试下面的return promise.resolve');
+    // console.log('响应出错,测试下面的return promise.resolve');
+    let o = {
+        message: '数据返回出错,请重试',
+        fun(){}
+    };
+    displayNotice(o);
     return Promise.resolve(error.response);
 })
 
@@ -37,12 +57,19 @@ function checkStatus(response) {
 
 //检查状态码
 function checkCode(res) {
-    // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
+    // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，弹窗提示
+    let o = {
+        message: '发生错误,没有找到你想要的',
+        fun(){}
+    };
     if (res.status === -404) {
-        console.log('是不是网络不好，刷新再试试吧');
+        //console.log('发生错误,没有找到你想要的');
+        displayNotice(o);
     }
     if (res && (res.data.code < 0)) {
-        console.log(res.data.msg)
+        // console.log(res.data.msg)
+        o.message = res.data.msg;
+        displayNotice(o);
     }
     return res;
 }
@@ -67,11 +94,11 @@ function post(url, data) {
 }
 
 function get(url, params, uneedDefaultParams) {
-    if(!uneedDefaultParams){
-        if(!params.pagenum){
+    if (!uneedDefaultParams) {
+        if (!params.pagenum) {
             params.pagenum = 1;
         }
-        if(!params.pagesize){
+        if (!params.pagesize) {
             params.pagesize = 18;
         }
     }

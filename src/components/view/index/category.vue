@@ -3,12 +3,11 @@
         <!--类目-->
         <div class="category_list">
             <div class="cate_ul clear_fix">
-                <router-link :to="`category?id=`+item.categoryId" class="cate_list" v-for="( item,i) in cateArr.fewCate"
-                             :key="i">
+                <router-link :to="`category?id=`+item.categoryId" class="cate_list" v-for="( item,i) in cateArr.fewCate" :key="i">
                     <span><img :src="item.logo" alt=""></span>
                     <span>{{item.categoryName}}</span>
                 </router-link>
-                <ul class="cate_ul more_cate " v-if="showMore.is">
+                <ul class="cate_ul more_cate " v-show="showMore.is">
                     <router-link :to="`category?id=`+item.categoryId" class="cate_list"
                                  v-for="( item,i) in cateArr.moreCate" :key="i">
                         <span><img :src="item.logo" alt=""></span>
